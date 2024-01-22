@@ -52,5 +52,5 @@
         "Temp/": true
     },
     "dotnet.preferCSharpExtension": true,
-    "dotnet.defaultSolution": "Rocket_Control.sln"
+    "dotnet.defaultSolution": "Rocket_Control_Game.sln"
 }
