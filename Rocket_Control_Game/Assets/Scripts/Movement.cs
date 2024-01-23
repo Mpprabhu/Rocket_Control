@@ -26,15 +26,15 @@ public class Movement : MonoBehaviour
         if(Input.GetKey(KeyCode.Space))
         {
             rb.AddRelativeForce(Vector3.up*thrust*Time.deltaTime);
-            if(!audioSource.isPlaying)
+            if(!audioSource.isPlaying) //isPlaying is a property not a function that to be declared
                 {
                     audioSource.Play();
                 }
+        }
         else
             {
                 audioSource.Stop();
             }
-        }
     }
     void ProcessRotation()
     {
