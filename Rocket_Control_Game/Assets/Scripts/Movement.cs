@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
+    [SerializeField]float thrust=1000f, rotatespeed=100f;
+    [SerializeField] AudioClip mainEngine;
     Rigidbody rb;
-    AudioSource audioSource;
-    [SerializeField]float thrust=1000f,rotatespeed=100f;
-    // [SerializeField]float rotatespeed = 100f;
+    AudioSource audioSource; //caching process
 
     void Start()
     {
@@ -28,7 +28,7 @@ public class Movement : MonoBehaviour
             rb.AddRelativeForce(Vector3.up*thrust*Time.deltaTime);
             if(!audioSource.isPlaying) //isPlaying is a property not a function that to be declared
                 {
-                    audioSource.Play();
+                    audioSource.PlayOneShot(mainEngine);
                 }
         }
         else
