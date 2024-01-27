@@ -6,6 +6,8 @@ public class Movement : MonoBehaviour
 {
     [SerializeField]float thrust=1000f, rotatespeed=100f;
     [SerializeField] AudioClip mainEngine;
+    [SerializeField] ParticleSystem JetParticle, LeftShiftParticle,RightShiftParticle;
+    
     Rigidbody rb;
     AudioSource audioSource; //caching process
 
@@ -29,11 +31,13 @@ public class Movement : MonoBehaviour
             if(!audioSource.isPlaying) //isPlaying is a property not a function that to be declared
                 {
                     audioSource.PlayOneShot(mainEngine);
+                    JetParticle.Play();
                 }
         }
         else
             {
                 audioSource.Stop();
+                JetParticle.Stop();
             }
     }
     void ProcessRotation()
@@ -41,11 +45,12 @@ public class Movement : MonoBehaviour
         if(Input.GetKey(KeyCode.A))
         {
             ApplyRotation(rotatespeed);
+            RightShiftParticle.Play();
         }
         else if(Input.GetKey(KeyCode.D))
         {
             ApplyRotation(-rotatespeed);
-
+            LeftShiftParticle.Play();
         }
     }
 
