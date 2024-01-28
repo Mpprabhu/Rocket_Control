@@ -31,6 +31,10 @@ public class Movement : MonoBehaviour
             if(!audioSource.isPlaying) //isPlaying is a property not a function that to be declared
                 {
                     audioSource.PlayOneShot(mainEngine);
+                }
+
+                if(!JetParticle.isPlaying)
+                {
                     JetParticle.Play();
                 }
         }
@@ -45,12 +49,23 @@ public class Movement : MonoBehaviour
         if(Input.GetKey(KeyCode.A))
         {
             ApplyRotation(rotatespeed);
-            RightShiftParticle.Play();
+            if(!RightShiftParticle.isPlaying)
+            {
+                RightShiftParticle.Play();
+            }
         }
         else if(Input.GetKey(KeyCode.D))
         {
             ApplyRotation(-rotatespeed);
-            LeftShiftParticle.Play();
+            if(!LeftShiftParticle.isPlaying)
+            {
+                LeftShiftParticle.Play();   
+            }
+        }
+        else
+        {
+            RightShiftParticle.Stop();
+            LeftShiftParticle.Stop();
         }
     }
 
