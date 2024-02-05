@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -8,9 +9,33 @@ public class CollisionHandler : MonoBehaviour
     [SerializeField]ParticleSystem CrashParticles, SuccessParticles;
     AudioSource audioSource;
     bool isTransitioning = false;
+    bool collisionDisable = false;
+    void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
+
+    void Update() 
+    {
+        RespondDebugKeys();    
+    }
+
+    void RespondDebugKeys()
+    {
+        if(Input.GetKeyDown(KeyCode.L))
+        {
+            LoadNextLevel();
+        }    
+
+        else if(Input.GetKeyDown(KeyCode.C))
+        {
+            collisionDisable = !collisionDisable;    //Toggles from true to false or  vice versa
+        }
+    }
+
     void OnCollisionEnter(Collision other) 
     {
-        if(isTransitioning)     { return; }
+        if(isTransitioning || collisionDisable)     { return; }
         switch(other.gameObject.tag)
         {
             case "Friendly":
@@ -25,10 +50,6 @@ public class CollisionHandler : MonoBehaviour
                 StartCrashSequence();
                 break;
         }    
-    }
-    void Start()
-    {
-        audioSource = GetComponent<AudioSource>();
     }
 
     void StartCrashSequence()

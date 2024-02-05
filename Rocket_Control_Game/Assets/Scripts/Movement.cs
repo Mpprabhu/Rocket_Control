@@ -38,11 +38,11 @@ public class Movement : MonoBehaviour
     {
         if(Input.GetKey(KeyCode.A))
         {
-            RotationLeft();
+            RotationRight();
         }
         else if(Input.GetKey(KeyCode.D))
         {
-            RotationRight();
+            RotationLeft();
         }
         else
         {
